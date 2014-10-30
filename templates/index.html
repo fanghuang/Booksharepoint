@@ -33,8 +33,10 @@
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 				{% block navbar_left %}
+				    {% if user %}
 					<li><a id="add-book" data-toggle="modal"
 						data-target="#insert-book-modal" href="#">Add Books</a></li>
+					{% endif %}
 				{% endblock %}
 				</ul>
 				

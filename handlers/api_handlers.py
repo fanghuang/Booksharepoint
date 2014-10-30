@@ -1,7 +1,7 @@
 import webapp2
 
 API_VERSION = 1
-API_URL = "/api/v%d/" % API_VERSION
+API_URL = "/api/v%d"
 
 class api_base(webapp2.RequestHandler):
     def get(self):
@@ -12,6 +12,7 @@ class api_helloworld(webapp2.RequestHandler):
         self.response.out.write("Hello World")
 
 app = webapp2.WSGIApplication([
-    (API_URL, api_base),
-    (API_URL + "helloworld", api_helloworld)
+    (API_URL % (API_VERSION), api_base),
+    (API_URL % (API_VERSION) + "/", api_base),
+    (API_URL % (API_VERSION)+ "/helloworld", api_helloworld)
 ], debug=True)
