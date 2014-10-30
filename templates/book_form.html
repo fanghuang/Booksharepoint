@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add a book</title>
+
+    <link rel="stylesheet" href="/static/css/bookform.css" type="text/css" />
+</head>
+
+<body>
+    <hr>
+    <div class="row">
+        <h3>Automatic Form</h3>
+        <div class="container" style="display:inline-block;">
+            <img id="auto-img" class="bordered" src="#" width="128px" height="168px" alt="book image" onerror='if (this.src != "http://placehold.it/128x168&text=Book+IMG") this.src = "http://placehold.it/128x168&text=Book+IMG";' />
+        </div>
+
+        <div class="container" style="display:inline-block;">
+            <form action="#" method="post">
+                <table>
+                    <tr>
+                        <td>Price</td>
+                        <td>$</td>
+                        <td>
+                            <input class="price-input" type="text" name="currency" pattern="^\d*(\.\d{2}$)?" size="4" title="No dollar sign and no comma(s) - cents (.##) are optional but must have 2 decimal places" required="true" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Condition</td>
+                        <td></td>
+                        <td>
+                            <select>
+                                <option value="cond_default">Select Condition</option>
+                                <option value="cond_new">New</option>
+                                <option value="cond_like_new">Like New</option>
+                                <option value="cond_fair">Fair</option>
+                                <option value="cond_poor">Poor</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Department</td>
+                        <td></td>
+                        <td>
+                            <select>
+                                <option value="dept_default">Select Department</option>
+                                <option value="ab">AB</option>
+                                <option value="csse">CSSE</option>
+                                <option value="me">ME</option>
+                                <option value="others">others...</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <p></p>
+                <table>
+                    <tr>
+                        <td>ISBN</td>
+                        <td>
+                            <input class="isbn-input" type="text" name="input_isbn" required="true" />
+                        </td>
+                       
+                    </tr>
+                    <tr>
+                        <td>Title</td>
+                        <td style="color:#8C8C8C; ">
+                            <p id="auto-title" style="display: inline;">(none)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Author</td>
+                        <td style="color:#8C8C8C; ">
+                            <p id="auto-author" style="display: inline;">(none)</p>
+                        </td>
+                    </tr>
+
+                </table>
+            </form>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <h3>Manual Form</h3>
+        <div class="container" style="display:inline-block;">
+            <img id="manual-img" class="bordered" class="bordered" src="#" width="128px" height="168px" alt="book image" onerror='if (this.src != "http://placehold.it/128x168&text=Book+IMG") this.src = "http://placehold.it/128x168&text=Book+IMG";' />
+        </div>
+
+        <div class="container" style="display:inline-block;">
+            <form>
+                <table>
+                    <tr>
+                        <td>Price</td>
+                        <td>$</td>
+                        <td>
+                            <input class="price-input" type="text" name="currency" pattern="^\d*(\.\d{2}$)?" size="4" title="No dollar sign and no comma(s) - cents (.##) are optional but must have 2 decimal places" required="true" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Condition</td>
+                        <td></td>
+                        <td>
+                            <select>
+                                <option value="cond_default">Select Condition</option>
+                                <option value="cond_new">New</option>
+                                <option value="cond_like_new">Like New</option>
+                                <option value="cond_fair">Fair</option>
+                                <option value="cond_poor">Poor</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Department</td>
+                        <td></td>
+                        <td>
+                            <select>
+                                <option value="dept_default">Select Department</option>
+                                <option value="ab">AB</option>
+                                <option value="csse">CSSE</option>
+                                <option value="me">ME</option>
+                                <option value="others">others...</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+
+                <p></p>
+
+                <table>
+                    <tr>
+                        <td>Title</td>
+                        <td>
+                            <input type="text" name="input_title" required="true" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Author</td>
+                        <td>
+                            <input type="text" name="input_authors" required="true" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Image URL</td>
+                        <td>
+                            <input type="url" name="input_book_img" id="book_img" value="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td style="text-align: right;">
+                            <input type="submit" value="Submit" />
+                        </td>
+                    </tr>
+
+                </table>
+            </form>
+
+        </div>
+
+        <hr>
+       
+
+        <!-- load scripts at the bottom of your page -->
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+        <script src="/static/js/bookform.js"></script>
+</body>
+
+</html>
