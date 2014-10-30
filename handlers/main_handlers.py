@@ -2,16 +2,14 @@ from base_handlers import BaseRequestHandler, BaseUserPageRequestHandler
 
 # TODO: Delete this
 from models import WeatherPics, PARENT_KEY
-class WeatherPicsPage(BaseRequestHandler):
-    template = "templates/main.html"
+class HomePage(BaseRequestHandler):
+    template = "templates/index.html"
     
     def get(self):
-        weatherpics_query = WeatherPics.query(ancestor=PARENT_KEY).order(-WeatherPics.last_touch_date_time)
-        values = {"weatherpics_query": weatherpics_query}
-        self.render(**values)
-
-class HomePage(BaseRequestHandler):
-    template = 'templates/index.html'
+        # TODO: Make this query books instead
+        books_query = WeatherPics.query(ancestor=PARENT_KEY).order(-WeatherPics.last_touch_date_time)
+        self.values.update({"weatherpics_query": books_query})
+        self.render(**self.values)
 
 # TODO: Change this to modals    
 class BookFormPage(BaseRequestHandler):

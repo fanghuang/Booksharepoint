@@ -57,8 +57,7 @@ class DeleteBookAction(webapp2.RequestHandler):
         
 
 app = webapp2.WSGIApplication([
-    ("/", main_handlers.WeatherPicsPage),
-    ('/home', main_handlers.HomePage),
+    ("/", main_handlers.HomePage),
     ('/cart', main_handlers.CartPage),
     ('/bookform', main_handlers.BookFormPage),
     ("/insertbook", InsertBookAction),

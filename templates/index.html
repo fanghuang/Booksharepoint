@@ -39,17 +39,12 @@
 				</ul>
 				
 				<ul class="nav navbar-nav navbar-right">
-				{% block navbar_right %}
+				
 					<li><a id="toggle-edit" href="#">Edit</a></li>
-					<li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Username<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-	                        <li><a href="/cart">My Cart &nbsp;<span class="badge">0</span></a></li>
-	                        <li class="divider"></li>
-	                        <li><a href="#">Log Out</a></li>
-                        </ul>
-                    </li>
-				{% endblock %}
+					{% block navbar_right %}
+                    {% include "templates/nav_login_form.html" %}
+                    {% endblock %}
+             
 				</ul>
 				
 				<form class="navbar-form navbar-right">
@@ -73,13 +68,39 @@
 		<div class="col-xs-6 col-md-2 col-sm-4 sidebar-offcanvas" id="sidebar"
 			role="navigation">
 			<div class="list-group">
-				<a href="#" class="list-group-item active">All Departments</a> <a
-					href="#" class="list-group-item">MA</a> <a href="#"
-					class="list-group-item">CSSE</a> <a href="#"
-					class="list-group-item">ME</a> <a href="#" class="list-group-item">ECE</a>
-				<a href="#" class="list-group-item">CHEM</a> <a href="#"
-					class="list-group-item">PH</a> <a href="#" class="list-group-item">ECON</a>
-				<a href="#" class="list-group-item">AB</a>
+				<a class="list-group-item active">All Departments</a>
+				{% for dept in dept_query %}
+				<a class="list-group-item">{{ dept.abbrev }}</a>
+				{% endfor %}
+				
+				<a class="list-group-item">AS</a>
+				<a class="list-group-item">BE</a>
+				<a class="list-group-item">BIO</a>
+				<a class="list-group-item">CE</a>
+				<a class="list-group-item">CHE</a>
+				<a class="list-group-item">CHEM</a>
+				<a class="list-group-item">CLSK</a>
+				<a class="list-group-item">CSSE</a>
+				<a class="list-group-item">ECE</a>
+				<a class="list-group-item">EM</a>
+				<a class="list-group-item">EMGT</a>
+				<a class="list-group-item">EP</a>
+				<a class="list-group-item">ES</a>
+				<a class="list-group-item">GE</a>
+				<a class="list-group-item">GRAD</a>
+				<a class="list-group-item">GS</a>
+				<a class="list-group-item">IA</a>
+				<a class="list-group-item">JP</a>
+				<a class="list-group-item">MA</a>
+				<a class="list-group-item">ME</a>
+				<a class="list-group-item">MS</a>
+				<a class="list-group-item">OE</a>
+				<a class="list-group-item">PH</a>
+				<a class="list-group-item">REF</a>
+				<a class="list-group-item">RH</a>
+				<a class="list-group-item">ROBO</a>
+				<a class="list-group-item">SP</a>
+				<a class="list-group-item">SV</a>
 			</div>
 		</div>
 

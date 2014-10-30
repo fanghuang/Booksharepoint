@@ -1,6 +1,7 @@
 from google.appengine.ext import ndb
 
 ROOT_DEPT_KEY = ndb.Key("Entity", "root_dept")
+ROOT_BOOK_KEY = ndb.Key("Entity", "root_book")
 
 # TODO: Delete this and rename to model.py
 PARENT_KEY = ndb.Key("Entity", "root_weatherpics")
@@ -14,7 +15,7 @@ class Department(ndb.Model):
     abbrev = ndb.StringProperty()
     
 class Person(ndb.Model):
-	# account = ndb.UserProperty()
+    account = ndb.UserProperty()
     display_name = ndb.StringProperty()
     contact_info = ndb.StringProperty()
     
