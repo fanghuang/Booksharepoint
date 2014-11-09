@@ -1,0 +1,45 @@
+<!-- Modal -->
+<div class="modal fade" id="insert-book-option-modal" tabindex="-1"
+	role="dialog" aria-labelledby="Add Book Option" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title">Choose Insertion Method</h4>
+			</div>
+
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-sm-6">
+						<h3>Have the ISBN available?</h3>
+						<p>Great! You can use the automatic input form! It uses the
+							book's ISBN to auto-populate the book's image, title, and author.
+							You only need to input a few additional details.</p>
+
+					</div>
+					<div class="col-sm-6">
+						<h3>Don't have the ISBN?</h3>
+						<p>
+							Oh well. You can still use the manual input form. First, find an
+							image of the book's cover online so others know they've found the
+							right book.
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<button type="button" class="btn btn-primary" data-dismiss="modal"
+							aria-hidden="true" data-toggle="modal" data-target="#insert-book-modal">Automatic
+							form</button>
+					</div>
+					<div class="col-sm-6">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"
+                            aria-hidden="true" data-toggle="modal" data-target="#insert-book-modal">Manual
+                            form</button>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
