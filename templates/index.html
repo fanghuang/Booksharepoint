@@ -35,7 +35,7 @@
 				{% block navbar_left %}
 				    {% if person %}
 					<li>
-					   <a id="add-book" data-toggle="modal" data-target="#insert-book-modal" href="#">Add Books</a>
+					   <a id="add-book" data-toggle="modal" data-target="#insert-book-option-modal" href="#">Sell a Book</a>
 					</li>
 					{% endif %}
 				{% endblock %}
@@ -68,7 +68,7 @@
 
 	<!-- TODO: Use Jinja to populate departments -->
 	<div class="container">
-		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-4 sidebar-offcanvas" id="sidebar"
+		<div class="col-lg-2 col-md-3 col-xs-4 sidebar-offcanvas" id="sidebar"
 			role="navigation">
 			<div class="list-group">
 				<a class="list-group-item active">All Departments</a>
@@ -135,7 +135,7 @@
 		</div>
 	</div>
 
-	{% include "templates/insert-book-modal.html" %}
+	{% include "templates/insert-book-option-modal.html" %}
 
 	<!-- Modal -->
 	<!-- TODO: Delete this. Is not necessary -->
