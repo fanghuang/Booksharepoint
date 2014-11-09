@@ -8,6 +8,7 @@ def main():
 		soup = BeautifulSoup(c)
 		deptSelector = soup.body.find(id="ctl00_ctl00_Content_Content_courseSelect_ddlDept")
 		count = 0
+		#return deptSelector.findAll("option")
 		for option in deptSelector.findAll("option"):
 			item = '<a class="list-group-item'
 			if count == 0:
