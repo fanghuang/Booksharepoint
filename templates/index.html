@@ -135,34 +135,8 @@
 		</div>
 	</div>
 
-	{% include "templates/insert-book-option-modal.html" %}
-
-	<!-- Modal -->
-	<!-- TODO: Delete this. Is not necessary -->
-	<div class="modal fade" id="delete-book-modal" tabindex="-1"
-		role="dialog" aria-labelledby="Remove Book" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-					</button>
-					<h4 class="modal-title">Remove Book</h4>
-				</div>
-				<form action="/deletebook" method="POST" class="form-horizontal"
-					role="form">
-					<input name="entity_key" type="text" class="hidden">
-					<div class="modal-body">
-						<div>Are you sure you wish to remove this Book?</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-						<button type="submit" class="btn btn-danger">Delete Book</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+	{% include "templates/modals/insert-book-option-modal.html" %}
+	{% include "templates/modals/delete-book-modal.html" %}
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script
