@@ -1,6 +1,6 @@
 from base_handlers import BaseRequestHandler, BaseUserPageRequestHandler
 
-from models import Book, ROOT_BOOK_KEY
+from models import Book, ROOT_BOOK_KEY, Department, ROOT_DEPT_KEY
 
 class HomePage(BaseRequestHandler):
     template = "templates/index.html"
@@ -8,6 +8,7 @@ class HomePage(BaseRequestHandler):
     def get(self):
         # TODO: Make this query books instead
         books_query = Book.query(ancestor=ROOT_BOOK_KEY).order(-Book.last_touch_date_time)
+        dept_query = Department.query(ancestor=ROOT_DEPT_KEY)
         self.values.update({"books_query": books_query})        
         self.render(**self.values)
 
@@ -29,3 +30,4 @@ class ForSalePage(BaseUserPageRequestHandler):
         books_query = self.person.get_books_for_sale()
         self.values.update({"books_query": books_query})        
         self.render(**self.values)
+

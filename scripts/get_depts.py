@@ -1,8 +1,12 @@
-import requests
+#import requests
 from bs4 import BeautifulSoup
+import urllib3
+http = urllib3.PoolManager()
+
 
 def get_options():
-	r = requests.get("http://bookstore.rose-hulman.edu/SelectTermDept.aspx")
+	#r = requests.get("http://bookstore.rose-hulman.edu/SelectTermDept.aspx")
+	r = http.request('GET', 'http://bookstore.rose-hulman.edu/SelectTermDept.aspx')
 	if (r.status_code == 200):
 		c = r.content
 		soup = BeautifulSoup(c)
