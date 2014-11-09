@@ -4,7 +4,6 @@ ROOT_DEPT_KEY = ndb.Key("Entity", "root_dept")
 ROOT_BOOK_KEY = ndb.Key("Entity", "root_book")
 
 class Department(ndb.Model):
-    full_name = ndb.StringProperty()
     abbrev = ndb.StringProperty()
     
 class Person(ndb.Model):
