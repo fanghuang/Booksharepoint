@@ -1,14 +1,15 @@
 
 from google.appengine.api import users
-import webapp2
-
-import main
-from utils import person_utils
 from google.appengine.ext.webapp.util import login_required
-
+import webapp2
 import logging
+
+from utils import person_utils
+import main
+
 ### Pages ###
 
+##### Mostly copied and refactored from DiceWithFriends 
 class BaseRequestHandler(webapp2.RequestHandler):
     """This is the base handler for all other Request Handlers.
     """
@@ -34,11 +35,11 @@ class BaseRequestHandler(webapp2.RequestHandler):
         # If not logged in, go to some login page and redirect
         if not user:
             self.template = "templates/index.html"
-            self.values = {'login_url': users.create_login_url(self.request.referer)}
+            self.values = {'login_url': users.create_login_url("/")}
         else:
-            self.person = person_utils.get_person_by_user(user)
+            self.person = person_utils.get_person_by_email(user.email())
             self.values = {'person': self.person,
-                      'user' : user,
+                      'cart' : self.person.get_cart(),
                       'logout_url': users.create_logout_url("/")}
             
     def get_template(self):
@@ -46,7 +47,7 @@ class BaseRequestHandler(webapp2.RequestHandler):
 
     def render(self, non_template=None, **kwargs):
         """Renders a template with the specified keyword arguments."""
-        logging.info(kwargs)
+        logging.info("["+self.template+"] " + str(kwargs))
         if self.template:
             self.response.out.write(self.get_template().render(**kwargs))
         else:
@@ -58,8 +59,10 @@ class BaseRequestHandler(webapp2.RequestHandler):
     def post(self):
         """By default the post request performs a get unless overridden."""
         self.get()
+        
+    def update_values(self, person, values):
+        raise Exception("Subclasses must override this method")
 
-##### Mostly copied and refactored from DiceWithFriends 
 class BaseUserPageRequestHandler(BaseRequestHandler):
     
     def __init__(self, *args):
@@ -72,4 +75,24 @@ class BaseUserPageRequestHandler(BaseRequestHandler):
 
     def update_values(self, person, values):
         raise Exception("Subclasses must override this method")
+  
+### Actions ###  
 
+class BaseActionRequestHandler(webapp2.RequestHandler):
+    """ALL action handlers should inherit from this one."""
+    def __init__(self, *args):
+        super(BaseActionRequestHandler, self).__init__(*args)
+    
+    def get(self):
+        """By default the get request performs a post unless overridden."""
+        self.post()
+        
+    def post(self):
+        user = users.get_current_user()
+        if not user:
+            raise Exception("Missing user!")
+        person = person_utils.get_person_by_email(user.email())
+        self.handle_post(person)
+        
+    def handle_post(self, person):
+        raise Exception("Subclass must implement handle_post!")

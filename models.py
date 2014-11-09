@@ -15,7 +15,6 @@ class Department(ndb.Model):
     abbrev = ndb.StringProperty()
     
 class Person(ndb.Model):
-    account = ndb.UserProperty()
     display_name = ndb.StringProperty()
     contact_info = ndb.StringProperty()
     
@@ -24,14 +23,20 @@ class Person(ndb.Model):
         if self.display_name:
             return self.display_name
         return self.key.string_id()  # Email address
+    
+    def get_cart(self):
+        return Book.query(Book.cart_key == self.key).fetch()
+    
+    def get_books_for_sale(self):
+        return Book.query(Book.seller_key == self.key).fetch()
 
 class Book(ndb.Model):
-    seller = ndb.KeyProperty(kind=Person)
+    seller_key = ndb.KeyProperty(kind=Person)
     cart_key = ndb.KeyProperty(kind=Person)
     
     price = ndb.FloatProperty()
     
-    isbn = ndb.StringProperty() # unique
+    isbn = ndb.StringProperty() 
     author = ndb.StringProperty()
     title = ndb.StringProperty()
     img_url = ndb.StringProperty()

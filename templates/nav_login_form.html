@@ -1,13 +1,18 @@
-{% if user %}
-<li class="dropdown"><a href="/" class="dropdown-toggle"
-	data-toggle="dropdown">{{ user.email() }}<span class="caret"></span></a>
+{% if person %}
+<li class="dropdown"><a class="dropdown-toggle"
+	data-toggle="dropdown">{{ person.get_name() }}<span class="caret"></span></a>
 	<ul class="dropdown-menu" role="menu">
-		<li><a href="/cart">My Cart &nbsp;<span class="badge">0</span></a></li>
-		<li class="divider"></li>
+		<li><a href="/cart">My Cart &nbsp;
+			<span class="badge">
+			{% if cart %} {{ cart.count() }} 
+			{% else %} 0 {% endif %}</span>
+		</a></li>
+		<li><a href="/forsale">Books for Sale</a></li>
 		{% if logout_url %}
+		<li class="divider"></li>
 		<li><a href="{{ logout_url }}">Logout</a></li>
 		{% endif %}
 	</ul></li>
 {% else %}
-<li><a id="nav-login" href="{{ login_url }}">Login</a></li>
+<li><a href="{{ login_url }}">Login</a></li>
 {% endif %}
