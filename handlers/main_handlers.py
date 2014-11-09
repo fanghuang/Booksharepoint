@@ -1,14 +1,14 @@
 from base_handlers import BaseRequestHandler, BaseUserPageRequestHandler
 
-# TODO: Delete this
-from models import WeatherPics, PARENT_KEY
+from models import Book, ROOT_BOOK_KEY
+
 class HomePage(BaseRequestHandler):
     template = "templates/index.html"
     
     def get(self):
         # TODO: Make this query books instead
-        books_query = WeatherPics.query(ancestor=PARENT_KEY).order(-WeatherPics.last_touch_date_time)
-        self.values.update({"weatherpics_query": books_query})
+        books_query = Book.query(ancestor=ROOT_BOOK_KEY).order(-Book.last_touch_date_time)
+        self.values.update({"books_query": books_query})        
         self.render(**self.values)
 
 # TODO: Change this to modals    
@@ -19,3 +19,7 @@ class BookFormPage(BaseRequestHandler):
    
 class CartPage(BaseUserPageRequestHandler):
     template = 'templates/cart.html'
+
+
+class ForSalePage(BaseUserPageRequestHandler):
+    template = 'templates/forsale.html'
