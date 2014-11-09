@@ -3,13 +3,6 @@ from google.appengine.ext import ndb
 ROOT_DEPT_KEY = ndb.Key("Entity", "root_dept")
 ROOT_BOOK_KEY = ndb.Key("Entity", "root_book")
 
-# TODO: Delete this and rename to model.py
-PARENT_KEY = ndb.Key("Entity", "root_weatherpics")
-class WeatherPics(ndb.Model):
-    image_url = ndb.StringProperty()
-    caption = ndb.StringProperty()
-    last_touch_date_time = ndb.DateTimeProperty(auto_now=True)
-    
 class Department(ndb.Model):
     full_name = ndb.StringProperty()
     abbrev = ndb.StringProperty()
@@ -39,10 +32,13 @@ class Book(ndb.Model):
     isbn = ndb.StringProperty() 
     author = ndb.StringProperty()
     title = ndb.StringProperty()
-    img_url = ndb.StringProperty()
+    image_url = ndb.StringProperty()
     
     dept = ndb.KeyProperty(kind=Department)
     
     comments = ndb.TextProperty()
     
     last_touch_date_time = ndb.DateTimeProperty(auto_now=True)
+
+    def get_price(self):
+        return "${0:.0f}".format(round(self.price,0))

@@ -10,6 +10,18 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
+- kind: Book
+  ancestor: yes
+  properties:
+  - name: last_touch_date_time
+    direction: desc
+
+- kind: Books
+  ancestor: yes
+  properties:
+  - name: last_touch_date_time
+    direction: desc
+
 - kind: WeatherPics
   ancestor: yes
   properties:

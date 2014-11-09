@@ -23,7 +23,7 @@ import webapp2
 
 from handlers import main_handlers
 
-from models import WeatherPics, PARENT_KEY
+from models import Book, ROOT_BOOK_KEY
 
 jinja_env = jinja2.Environment(
   loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -40,12 +40,12 @@ class InsertBookAction(webapp2.RequestHandler):
             # TODO: Change this to isbn
             book.image_url = self.request.get("image-url")
             # TODO: Change this to price
-            book.caption = self.request.get("caption")
+            book.price = float(self.request.get("caption"))
         else:
             # TODO: Make this actually a book object
-            book = WeatherPics(parent=PARENT_KEY,
+            book = Book(parent=ROOT_BOOK_KEY,
                                     image_url=self.request.get("image-url"),
-                                    caption=self.request.get("caption"))
+                                    price=float(self.request.get("caption")))
         book.put()
         self.redirect(self.request.referer)
 
@@ -62,5 +62,6 @@ app = webapp2.WSGIApplication([
     ('/bookform', main_handlers.BookFormPage),
     ("/insertbook", InsertBookAction),
     ("/deletebook", DeleteBookAction),
+    ("/forsale", main_handlers.ForSalePage)
 ], debug=True)
 

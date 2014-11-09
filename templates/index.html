@@ -109,7 +109,8 @@
 
 		<!-- TODO: Change the query -->
 		<div id="columns">
-			{% for book in weatherpics_query %}
+			{% for book in books_query %}
+			
 			<div class="pin">
 				<div class="hidden pull-right edit-actions">
 					<button data-toggle="modal" type="button"
@@ -118,7 +119,7 @@
 						<span class="glyphicon glyphicon-pencil"></span>
 						<div class="hidden entity-key">{{book.key.urlsafe()}}</div>
 						<div class="hidden image-url">{{book.image_url}}</div>
-						<div class="hidden caption">{{book.caption}}</div>
+						<div class="hidden caption">{{book.price}}</div>
 					</button>
 					<button data-toggle="modal" type="button"
 						data-target="#delete-book-modal"
@@ -128,7 +129,7 @@
 					</button>
 				</div>
 				<img src="{{book.image_url}}" alt="Book Cover">
-				<p class="caption">{{book.caption}}</p>
+				<p class="caption">{{book.get_price()}}</p>
 			</div>
 			{% endfor %}
 		</div>
