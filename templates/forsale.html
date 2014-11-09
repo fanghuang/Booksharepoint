@@ -53,30 +53,20 @@
 			<h1>My Books</h1>
 			<div class="row">
 			<!-- TODO: Jinja this -->
-				<div class="col-xs-6 col-md-3">
+
+			{% for book in books_query %}
+			
+			<div class="col-xs-6 col-md-3">
 					<a href="#" class="thumbnail"> <img
-						data-src="holder.js/100%x180/text:Book 1"
-						alt="Generic placeholder thumbnail">
+						src="{{book.image_url}}"
+						alt="Book Cover">
+						<p class="caption">{{book.get_price()}}</p>
 					</a>
-				</div>
-				<div class="col-xs-6 col-md-3">
-					<a href="#" class="thumbnail"> <img
-						data-src="holder.js/100%x180/text:Book 2"
-						alt="Generic placeholder thumbnail">
-					</a>
-				</div>
-				<div class="col-xs-6 col-md-3">
-					<a href="#" class="thumbnail"> <img
-						data-src="holder.js/100%x180/text:Book 3"
-						alt="Generic placeholder thumbnail">
-					</a>
-				</div>
-				<div class="col-xs-6 col-md-3">
-					<a href="#" class="thumbnail"> <img
-						data-src="holder.js/100%x180/text:Book 4"
-						alt="Generic placeholder thumbnail">
-					</a>
-				</div>
+			</div>
+			{% endfor %}
+
+				
+				
 			</div>
 			
 		</div>

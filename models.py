@@ -17,11 +17,12 @@ class Person(ndb.Model):
             return self.display_name
         return self.key.string_id()  # Email address
     
-    def get_cart(self):
-        return Book.query(Book.cart_key == self.key).fetch()
+    def get_cart(self): 
+        return Book.query(ancestor=ROOT_BOOK_KEY).filter(Book.cart_key == self.key).fetch()
     
     def get_books_for_sale(self):
-        return Book.query(Book.seller_key == self.key).fetch()
+        query = Book.query(ancestor=ROOT_BOOK_KEY).filter(Book.seller_key == self.key)
+        return query.fetch()
 
 class Book(ndb.Model):
     seller_key = ndb.KeyProperty(kind=Person)

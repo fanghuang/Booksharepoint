@@ -17,51 +17,21 @@
 import os
 import logging
 
-from google.appengine.ext import ndb
 import jinja2
 import webapp2
 
-from handlers import main_handlers
-
-from models import Book, ROOT_BOOK_KEY
+from handlers import main_handlers, action_handlers
 
 jinja_env = jinja2.Environment(
   loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
   autoescape=True)
-        
-class InsertBookAction(webapp2.RequestHandler):
-    def post(self):
-        entity_key_urlsafe = self.request.get("entity_key")
-        
-        book = None
-        if entity_key_urlsafe:
-            book_key = ndb.Key(urlsafe=entity_key_urlsafe)
-            book = book_key.get()
-            # TODO: Change this to isbn
-            book.image_url = self.request.get("image-url")
-            # TODO: Change this to price
-            book.price = float(self.request.get("caption"))
-        else:
-            # TODO: Make this actually a book object
-            book = Book(parent=ROOT_BOOK_KEY,
-                                    image_url=self.request.get("image-url"),
-                                    price=float(self.request.get("caption")))
-        book.put()
-        self.redirect(self.request.referer)
-
-class DeleteBookAction(webapp2.RequestHandler):
-    def post(self):
-        book_key = ndb.Key(urlsafe=self.request.get("entity_key"))
-        book_key.delete()
-        self.redirect(self.request.referer)
-        
 
 app = webapp2.WSGIApplication([
     ("/", main_handlers.HomePage),
     ('/cart', main_handlers.CartPage),
     ('/bookform', main_handlers.BookFormPage),
-    ("/insertbook", InsertBookAction),
-    ("/deletebook", DeleteBookAction),
+    ("/insertbook", action_handlers.InsertBookAction),
+    ("/deletebook", action_handlers.DeleteBookAction),
     ("/forsale", main_handlers.ForSalePage)
 ], debug=True)
 

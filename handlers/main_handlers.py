@@ -23,3 +23,9 @@ class CartPage(BaseUserPageRequestHandler):
 
 class ForSalePage(BaseUserPageRequestHandler):
     template = 'templates/forsale.html'
+
+    def get(self):
+        # TODO: Make this query books instead
+        books_query = self.person.get_books_for_sale()
+        self.values.update({"books_query": books_query})        
+        self.render(**self.values)

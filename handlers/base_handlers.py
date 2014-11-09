@@ -80,19 +80,16 @@ class BaseUserPageRequestHandler(BaseRequestHandler):
 
 class BaseActionRequestHandler(webapp2.RequestHandler):
     """ALL action handlers should inherit from this one."""
+
+    person = None
+
     def __init__(self, *args):
         super(BaseActionRequestHandler, self).__init__(*args)
+        user = users.get_current_user()
+        if not user:
+            raise Exception("Missing user!")
+        self.person = person_utils.get_person_by_email(user.email())
     
     def get(self):
         """By default the get request performs a post unless overridden."""
         self.post()
-        
-    def post(self):
-        user = users.get_current_user()
-        if not user:
-            raise Exception("Missing user!")
-        person = person_utils.get_person_by_email(user.email())
-        self.handle_post(person)
-        
-    def handle_post(self, person):
-        raise Exception("Subclass must implement handle_post!")
