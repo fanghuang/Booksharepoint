@@ -8,8 +8,9 @@ class HomePage(BaseRequestHandler):
     def get(self):
         # TODO: Make this query books instead
         books_query = Book.query(ancestor=ROOT_BOOK_KEY).order(-Book.last_touch_date_time)
-        dept_query = Department.query(ancestor=ROOT_DEPT_KEY)
-        self.values.update({"books_query": books_query})        
+        dept_query = Department.query(ancestor=ROOT_DEPT_KEY).order(Department.abbrev)
+        self.values.update({"books_query": books_query,
+                            "dept_query": dept_query})        
         self.render(**self.values)
 
 # TODO: Change this to modals    

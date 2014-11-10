@@ -22,6 +22,11 @@ indexes:
   - name: last_touch_date_time
     direction: desc
 
+- kind: Department
+  ancestor: yes
+  properties:
+  - name: abbrev
+
 - kind: WeatherPics
   ancestor: yes
   properties:

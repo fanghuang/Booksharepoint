@@ -9,6 +9,7 @@ def get_options():
 	
 		deptSelector = tree.get_element_by_id("ctl00_ctl00_Content_Content_courseSelect_ddlDept")
 		options = [option.text.strip() for option in deptSelector.findall('option')]
+		del options[0] # remove top option
 		return options
 	
 def gen_html():
