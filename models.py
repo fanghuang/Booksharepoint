@@ -17,17 +17,17 @@ class Person(ndb.Model):
         return self.key.string_id()  # Email address
     
     def get_cart(self): 
-        return Book.query(ancestor=ROOT_BOOK_KEY).filter(Book.cart_key == self.key).fetch()
+        return Book.query(ancestor=ROOT_BOOK_KEY).filter(Book.cart_key == self.key)
     
     def get_books_for_sale(self):
-        query = Book.query(ancestor=ROOT_BOOK_KEY).filter(Book.seller_key == self.key)
-        return query.fetch()
+        return Book.query(ancestor=ROOT_BOOK_KEY).filter(Book.seller_key == self.key)
 
 class Book(ndb.Model):
     seller_key = ndb.KeyProperty(kind=Person)
     cart_key = ndb.KeyProperty(kind=Person)
     
     price = ndb.FloatProperty()
+    condition_id = ndb.IntegerProperty()
     
     isbn = ndb.StringProperty() 
     author = ndb.StringProperty()
@@ -42,3 +42,17 @@ class Book(ndb.Model):
 
     def get_price(self):
         return "${0:.0f}".format(round(self.price,0))
+    
+    def get_condition_string(self, cond_id):
+        conds = Book.get_conditions()
+        if cond_id >= 0 and cond_id < len(conds):
+            return conds[len(conds) - (1 + cond_id)]
+        else:
+            return "Error: Bad condition id!"
+    
+    @classmethod
+    def get_conditions(cls):
+        return ["New", "Like New", "Fair", "Poor"]
+    
+    def get_placeholder_image(self, width="100%", height="180"):
+        return "holder.js/%sx%s/text:%s" % (width, height, self.title)

@@ -5,12 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Book Share Point</title>
-<!-- Bootstrap -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<!-- Optional theme -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+{% include "templates/include/bootstrap-css.html" %}
+<link rel="stylesheet" type="text/css" href="/static/css/equal-columns.css">
 <link rel="stylesheet" type="text/css" href="/static/css/pinterest.css">
 <link rel="stylesheet" type="text/css" href="/static/css/main.css">
 </head>
@@ -43,9 +39,8 @@
 				
 				<ul class="nav navbar-nav navbar-right">
 				
-					<li><a id="toggle-edit" href="#">Edit</a></li>
 					{% block navbar_right %}
-                    {% include "templates/nav_login_form.html" %}
+                    {% include "templates/forms/nav_login_form.html" %}
                     {% endblock %}
              
 				</ul>
@@ -66,7 +61,6 @@
 		</div>
 	</div>
 
-	<!-- TODO: Use Jinja to populate departments -->
 	<div class="container">
 		<div class="col-lg-2 col-md-3 col-xs-4 sidebar-offcanvas" id="sidebar"
 			role="navigation">
@@ -79,29 +73,12 @@
 			</div>
 		</div>
 
-		<!-- TODO: Change the query -->
 		<div id="columns">
 			{% for book in books_query %}
 			
 			<div class="pin">
-				<div class="hidden pull-right edit-actions">
-					<button data-toggle="modal" type="button"
-						data-target="#insert-book-modal"
-						class="edit-book btn btn-success btn-xs">
-						<span class="glyphicon glyphicon-pencil"></span>
-						<div class="hidden entity-key">{{book.key.urlsafe()}}</div>
-						<div class="hidden image-url">{{book.image_url}}</div>
-						<div class="hidden caption">{{book.price}}</div>
-					</button>
-					<button data-toggle="modal" type="button"
-						data-target="#delete-book-modal"
-						class="delete-book btn btn-danger btn-xs">
-						<span class="glyphicon glyphicon-remove"></span>
-						<div class="hidden entity-key">{{book.key.urlsafe()}}</div>
-					</button>
-				</div>
 				<img src="{{book.image_url}}" alt="Book Cover">
-				<p class="caption">{{book.get_price()}}</p>
+				<p class="book-price">{{book.get_price()}}</p>
 			</div>
 			{% endfor %}
 		</div>
@@ -110,11 +87,8 @@
 	{% include "templates/modals/insert-book-option-modal.html" %}
 	{% include "templates/modals/delete-book-modal.html" %}
 
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    {% include "templates/include/bootstrap_jquery.html" %}
+    <script src="/static/js/holder.js"></script>
 	<script src="/static/js/main.js"></script>
 	<script src="/static/js/booksharepoint.js"></script>
 </body>

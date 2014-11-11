@@ -1,25 +1,27 @@
 import urllib2
 import json, logging
 
+base_url = "https://www.googleapis.com/books/v1/volumes?q=isbn:"
+
 def get_book_details(isbn):
     """ Wrapper for getting book information """
     
     def get_details_by_isbn(isbn):
         """ Calls Google Books API to get JSON for the given ISBN """
         
-#         base_url = "https://www.googleapis.com/books/v1/volumes?q=isbn:"
         data = None
         try:
-            resp = urllib2.urlopen('https://www.googleapis.com/books/v1/volumes?q=isbn:'+ isbn)
+            resp = urllib2.urlopen(base_url + isbn)
             data = json.load(resp)
-            logging.info(data)
+            resp.close()
+#             logging.info(data)
         except urllib2.URLError, e:
             logging.error(e)
         return data
         
     info_dict = {}
     book_json = get_details_by_isbn(isbn)
-    print book_json
+#     print book_json
     
     if book_json and book_json["totalItems"] > 0:
         books = book_json["items"]

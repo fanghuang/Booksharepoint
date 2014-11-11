@@ -15,18 +15,18 @@
 # limitations under the License.
 #
 import os
-import logging
+import sys
+# Third party libraries path must be fixed before importing webapp2
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'includes/external'))
 
-import jinja2
 import webapp2
+import jinja2
 
 from handlers import main_handlers, action_handlers
-from utils import book_utils
 
 jinja_env = jinja2.Environment(
   loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
   autoescape=True)
-jinja_env.globals['get_placeholder_image'] = book_utils.get_placeholder_image
 
 app = webapp2.WSGIApplication([
     ("/", main_handlers.HomePage),
