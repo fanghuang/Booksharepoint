@@ -6,6 +6,10 @@ ROOT_BOOK_KEY = ndb.Key("Entity", "root_book")
 class Department(ndb.Model):
     abbrev = ndb.StringProperty()
     
+    @classmethod
+    def get_dept_by_abbrev(cls, abbrev):
+        return Department.query(Department.abbrev == abbrev)
+    
 class Person(ndb.Model):
     display_name = ndb.StringProperty()
     contact_info = ndb.StringProperty()
@@ -34,7 +38,7 @@ class Book(ndb.Model):
     title = ndb.StringProperty()
     image_url = ndb.StringProperty()
     
-    dept = ndb.KeyProperty(kind=Department)
+    dept = ndb.StringProperty()
     
     comments = ndb.TextProperty()
     

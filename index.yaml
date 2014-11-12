@@ -13,6 +13,13 @@ indexes:
 - kind: Book
   ancestor: yes
   properties:
+  - name: dept
+  - name: last_touch_date_time
+    direction: desc
+
+- kind: Book
+  ancestor: yes
+  properties:
   - name: last_touch_date_time
     direction: desc
 
@@ -26,9 +33,3 @@ indexes:
   ancestor: yes
   properties:
   - name: abbrev
-
-- kind: WeatherPics
-  ancestor: yes
-  properties:
-  - name: last_touch_date_time
-    direction: desc

@@ -8,12 +8,30 @@ class HomePage(BaseRequestHandler):
     def get(self):
         books_query = Book.query(ancestor=ROOT_BOOK_KEY).order(-Book.last_touch_date_time)
 
-#         dept = self.request.get("dept")
-#         if dept:
-#             books_query = books_query.filter(Book.dept == dept)
-        
         dept_query = Department.query(ancestor=ROOT_DEPT_KEY).order(Department.abbrev)
         book_conditions = Book.get_conditions()
+        self.values.update({"books_query": books_query,
+                            "dept_query": dept_query, 
+                            "book_conditions": book_conditions})        
+        self.render(**self.values)
+        
+class SearchPage(BaseRequestHandler):
+    template = "templates/index.html"
+    
+    def get(self):
+        books_query = Book.query(ancestor=ROOT_BOOK_KEY).order(-Book.last_touch_date_time)
+        dept_query = Department.query(ancestor=ROOT_DEPT_KEY).order(Department.abbrev)
+        book_conditions = Book.get_conditions()
+
+        q = self.request.get("q")
+        dept_param = self.request.get("dept")
+        title_param = self.request.get("title")
+        isbn_param = self.request.get("isbn")
+        
+        if q or dept_param or title_param or isbn_param:
+            if dept_param:
+                books_query = books_query.filter(Book.dept == dept_param.lower())
+        
         self.values.update({"books_query": books_query,
                             "dept_query": dept_query, 
                             "book_conditions": book_conditions})        

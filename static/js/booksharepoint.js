@@ -55,7 +55,7 @@ rh.book.hookBookAutoComplete = function() {
 	                  $('#auto-img').attr('src', book_thumbnail);
 	                  $('#auto-img-src').val(book_thumbnail);
 	                  // var book_obj = {title: book_title, author: book_authors, img_url: book_thumbnail};
-	                  
+	                   
 	                }
 	                
 	              }, function() {

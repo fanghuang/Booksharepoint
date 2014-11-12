@@ -25,7 +25,7 @@ class api_department(webapp2.RequestHandler):
         for abbrev in all_depts:
             dept_exists = query.filter(Department.abbrev == abbrev).count() > 0
             if not dept_exists:
-                dept = Department(parent=ROOT_DEPT_KEY, abbrev=abbrev)
+                dept = Department(parent=ROOT_DEPT_KEY, id=abbrev, abbrev=abbrev)
                 dept.put()
                 self.response.out.write("<p>Inserted department " + abbrev +"</p>")
                 

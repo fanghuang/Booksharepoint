@@ -7,7 +7,7 @@ import logging
 class InsertBookAction(BaseActionRequestHandler):
     def post(self):
         entity_key_urlsafe = self.request.get("entity_key")
-        
+        logging.info(self.request)
         book = None
         
         book_seller_key = self.person.key        
@@ -18,6 +18,7 @@ class InsertBookAction(BaseActionRequestHandler):
         book_author = self.request.get("author")
         book_title = self.request.get("title")
         book_dept = self.request.get("dept-abbrev")
+        logging.info(book_dept)
         book_comments = self.request.get("comments")
         
         if entity_key_urlsafe:
@@ -33,12 +34,21 @@ class InsertBookAction(BaseActionRequestHandler):
 #             book.isbn = book_isbn
 #             book.author = book_author
 #             book.title = book_title
-#             book.dept = book_dept
+            if book_dept:
+                book.dept = book_dept
 #             book.comments = book_comments
             book.image_url = book_image_url
         else:
             book = Book(parent=ROOT_BOOK_KEY, seller_key = book_seller_key, price=book_price,
                         image_url=book_image_url)
+            if book_isbn:
+                book.isbn = book_isbn
+            if book_author:
+                book.author = book_author
+            if book_title:
+                book.title = book_title
+            if book_dept:
+                book.dept = book_dept.lower()
             # TODO: Replace above with this when all fields are given
 #             book = Book(parent=ROOT_BOOK_KEY, seller_key = book_seller_key, price=book_price, 
 #                         image_url=book_image_url, 

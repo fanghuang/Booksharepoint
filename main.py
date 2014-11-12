@@ -30,6 +30,7 @@ jinja_env = jinja2.Environment(
 
 app = webapp2.WSGIApplication([
     ("/", main_handlers.HomePage),
+    ("/search", main_handlers.SearchPage),
     ('/cart', main_handlers.CartPage),
     ('/bookform', main_handlers.BookFormPage),
     ("/insertbook", action_handlers.InsertBookAction),
