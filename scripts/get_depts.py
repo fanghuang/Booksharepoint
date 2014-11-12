@@ -1,7 +1,16 @@
 from google.appengine.api import urlfetch
-import lxml.html
+import urllib2
+import re
 
 def get_options():
+	url = "http://bookstore.rose-hulman.edu/SelectTermDept.aspx"
+	resp = urllib2.urlopen(url)
+	html = resp.read()
+	para = re.findall(r'<option value="\d\d\d\d\d">(.*)</option>', html)
+	options = [i.strip() for i in para]
+	return options
+
+def get_options_lxml_html():
 	url = "http://bookstore.rose-hulman.edu/SelectTermDept.aspx"
 	resp = urlfetch.fetch(url)
 	if resp.status_code == 200:
@@ -11,7 +20,7 @@ def get_options():
 		options = [option.text.strip() for option in deptSelector.findall('option')]
 		del options[0] # remove top option
 		return options
-	
+
 def gen_html():
 	output = ""
 	count = 0
