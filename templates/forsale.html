@@ -54,6 +54,7 @@
 				<div class="pin">
 					<a class="thumbnail ownbooks" data-toggle="modal" data-target="#edit-book-modal"> 
 						<img src="{{book.image_url}}" alt="Book Cover">
+						<p class="book-price">{{book.title}}</p>
 						<p class="book-price">{{book.get_price()}}</p>
 						<div class="hidden entity-key">{{book.key.urlsafe()}}</div>
 						<div class="hidden image-url">{{book.image_url}}</div>
