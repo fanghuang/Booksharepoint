@@ -62,6 +62,10 @@ class ForSalePage(BaseUserPageRequestHandler):
 
     def get(self):
         books_query = self.person.get_books_for_sale()
-        self.values.update({"books_query": books_query})        
+        dept_query = Department.query(ancestor=ROOT_DEPT_KEY).order(Department.abbrev)
+        book_conditions = Book.get_conditions()
+        self.values.update({"books_query": books_query,
+                            "dept_query": dept_query, 
+                            "book_conditions": book_conditions})           
         self.render(**self.values)
 
