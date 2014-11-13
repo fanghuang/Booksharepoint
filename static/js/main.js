@@ -206,5 +206,6 @@ $(document).ready(function() {
 	rh.book.limitTextInput();
 	rh.book.enableButtons();
 	
+	// Show all the books
 	rh.book.showBooksByDept("*");
 });
