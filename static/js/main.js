@@ -93,23 +93,9 @@ rh.book.addEventHandlers = function(){
 };
 
 rh.book.enableButtons = function() {	
-//	$("#toggle-edit").click(function() {
-//		if (rh.book.editing) {
-//			rh.book.editing = false;
-//			$(".edit-actions").addClass("hidden");
-//			$(this).html("Edit");
-//		} else {
-//			rh.book.editing = true;
-//			$(".edit-actions").removeClass("hidden");
-//			$(this).html("Done");
-//		}
-//
-//	});
 
 	$("#add-book").click(function() {
-//		$("#insert-book-modal .modal-title").html("Add a Book");
-//		$("#insert-book-modal button[type=submit]").html("Add Book");
-		
+
 		$("#insert-book-modal input[name=entity_key]").val("").prop("disabled", true);
 		$("#insert-book-modal input[name=image-url]").val("");
 		$("#insert-book-modal input[name=title]").val("");
