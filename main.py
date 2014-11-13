@@ -36,6 +36,7 @@ app = webapp2.WSGIApplication([
     ("/forsale", main_handlers.ForSalePage),
     ("/insertbook", action_handlers.InsertBookAction),
     ("/deletebook", action_handlers.DeleteBookAction),
-    ("/addtocart", action_handlers.AddToCartAction)
+    ("/addtocart", action_handlers.AddToCartAction), 
+    ("/removefromcart", action_handlers.RemoveFromCartAction)
 ], debug=True)
 
