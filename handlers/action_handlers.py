@@ -17,6 +17,7 @@ class InsertBookAction(BaseActionRequestHandler):
         book_author = self.request.get("author")
         book_title = self.request.get("title")
         book_dept = self.request.get("dept-abbrev")
+        book_condition_id = int(self.request.get("condition"))
         
         if entity_key_urlsafe:
             book_key = ndb.Key(urlsafe=entity_key_urlsafe)
@@ -27,13 +28,17 @@ class InsertBookAction(BaseActionRequestHandler):
             
             book.price = book_price
             
-            # TODO: Uncomment these when all fields are given
-#             book.isbn = book_isbn
-#             book.author = book_author
-#             book.title = book_title
+            if book_isbn:
+                book.isbn = book_isbn
+            if book_author:
+                book.author = book_author
+            if book_title:
+                book.title = book_title
             if book_dept:
-                book.dept = book_dept
-#             book.comments = book_comments
+                book.dept = book_dept.lower()
+            if book_condition_id:
+                book.condition_id = book_condition_id
+
             book.image_url = book_image_url
         else:
             book = Book(parent=ROOT_BOOK_KEY, seller_key = book_seller_key, price=book_price,
@@ -46,6 +51,9 @@ class InsertBookAction(BaseActionRequestHandler):
                 book.title = book_title
             if book_dept:
                 book.dept = book_dept.lower()
+            if book_condition_id:
+                book_condition_id.dept = book_condition_id
+
             # TODO: Replace above with this when all fields are given
 #             book = Book(parent=ROOT_BOOK_KEY, seller_key = book_seller_key, price=book_price, 
 #                         image_url=book_image_url, 

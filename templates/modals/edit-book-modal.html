@@ -14,10 +14,10 @@
                 <div class="modal-body">
                     <!-- Book Image on Left -->
                     <div>
-                    <img id="auto-img" class="center-block img-responsive" data-src="holder.js/180x180/text:Book Title">
+                    <img id="auto--img" class="center-block img-responsive" data-src="holder.js/180x180/text:Book Title">
                     <input name="image-url" id="auto-img-src" class="hidden">
                     </div>
-                    
+                    <br>
                     <div class="row">
                     <!-- Input fields on Right -->
                     <div class="col-md-6">
@@ -26,7 +26,7 @@
                             <label for="isbn-input" class="col-sm-2 control-label">ISBN:</label>
                             <div class="col-sm-10">
                                 <input type="text" name="isbn" class="isbn-input form-control"
-                                    id="isbn-input" placeholder="ISBN (no dashes)">
+                                    id="isbn-input" placeholder="ISBN (no dashes)" readonly>
                             </div>
                         </div>
                         <!-- Title -->
@@ -88,13 +88,16 @@
                 <div class="modal-footer">
                     <button data-toggle="modal" type="button"
                         data-target="#delete-book-modal"
-                        class="delete-book btn btn-danger" data-dismiss="modal">
+                        class="delete-book btn btn-danger pull-left" data-dismiss="modal">
                         <div class="hidden entity-key"></div>
                         Delete Book
                     </button>
                     
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="edit-book btn btn-primary">Edit Book</button>
+                    <button type="submit" class="edit-book btn btn-primary">
+                        
+                        Edit Book
+                    </button>
                 </div>
 
             </form>

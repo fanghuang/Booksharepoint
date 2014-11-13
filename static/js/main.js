@@ -115,44 +115,32 @@ rh.book.enableButtons = function() {
 		$("#insert-book-modal input[name=entity_key]").val("").prop("disabled", true);
 	});
 
-	$(".edit-book").click(function() {
-		$("#insert-book-modal .modal-title").html("Edit this Book");
-		$("#insert-book-modal button[type=submit]").html("Edit Book");
-		
-		image_url = $(this).find(".image-url").html();
-		price = $(this).find(".price").html();
-		entityKey = $(this).find(".entity-key").html();
-		
-		$("#insert-book-modal input[name=image-url]").val(image_url);
-		$("#insert-book-modal input[name=price]").val(price);
-		$("#insert-book-modal input[name=entity_key]").val(entityKey).prop("disabled", false);
-	});
 	
 	$(".ownbooks").click(function(){
-		entityKey = $(this).find(".entity-key").html();
-		imageurl = $(this).find(".image-url").html();
-		isbn = $(this).find(".isbn").html();
-		title = $(this).find(".title").html();
-		author = $(this).find(".author").html();
-		price = $(this).find(".price").html();
-		condition = $(this).find(".condition").html();
-		dept = $(this).find(".dept-abbrev").html();
+		var entityKey = $(this).find(".entity-key").html();
+		var imageurl = $(this).find(".image-url").html().replace(/&amp;/g, '&');
+		var isbn = $(this).find(".isbn").html();
+		var title = $(this).find(".title").html();
+		var author = $(this).find(".author").html();
+		var price = $(this).find(".price").html();
+		var condition = $(this).find(".condition").html();
+		var dept = $(this).find(".dept-abbrev").html().toUpperCase();
 
 		$("#edit-book-modal .btn.delete-book .entity-key").html(entityKey);
-		$("#edit-book-modal .entity-key").val(entityKey);
-		$("#edit-book-modal #auto-img").attr("src", imageurl);
+		$("#edit-book-modal #auto--img").attr("src", imageurl);
 		$("#edit-book-modal input[name=image-url]").val(imageurl);
 		$("#edit-book-modal input[name=isbn]").val(isbn);
 		$("#edit-book-modal input[name=title]").val(title);
 		$("#edit-book-modal input[name=author]").val(author);
 		$("#edit-book-modal input[name=price]").val(price);
-		$("#edit-book-modal input[name=condition]").val(condition);
-		$("#edit-book-modal input[name=dept-abbrev]").val(dept);
+		$("#edit-book-modal select[name=dept-abbrev]").val(dept);
+		$("#edit-book-modal input[name=entity_key]").val(entityKey);
+		$("#edit-book-modal select[name=condition]").val(parseInt(condition));
 
 	});
 
 	$(".delete-book").click(function() {
-		entityKey = $(this).find(".entity-key").html();
+		var entityKey = $(this).find(".entity-key").html();
 		$("#delete-book-modal input[name=entity_key]").val(entityKey);
 	});
 	

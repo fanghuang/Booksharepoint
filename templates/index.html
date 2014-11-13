@@ -85,7 +85,9 @@
 				    </div>
 				    <div class="col-xs-2">
 				    {% if person %}
-	                <a class="cart-btn pull-right thumbnail glyphicon glyphicon-shopping-cart {% if book in cart_query %} in-cart {% endif %}"></a>
+	                <a class="cart-btn pull-right thumbnail glyphicon glyphicon-shopping-cart {% if book in cart_query %} in-cart {% endif %}">
+	                <div class="hidden entity-key">{{ book.key.urlsafe() }}</div>
+	                </a>
 	                {% endif %}
 				    </div>
 				</div>

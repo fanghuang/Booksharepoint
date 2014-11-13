@@ -20,6 +20,13 @@ class Person(ndb.Model):
             return self.display_name
         return self.key.string_id()  # Email address
     
+    def get_contact_info(self):
+        """ Returns the best contact info available for a Person """
+        if self.contact_info:
+            return self.contact_info
+        else:
+            return self.key.string_id()  # Email address
+    
     def get_cart(self): 
         return Book.query(ancestor=ROOT_BOOK_KEY).filter(Book.cart_key == self.key)
     
@@ -44,6 +51,9 @@ class Book(ndb.Model):
     
     last_touch_date_time = ndb.DateTimeProperty(auto_now=True)
 
+    def get_seller_email(self):
+        return self.seller_key.string_id()
+        
     def get_price(self):
         return "${0:.0f}".format(round(self.price,0))
     
