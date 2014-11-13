@@ -83,13 +83,15 @@
 					    <p class="caption">{{book.title}}</p>
 	                    <p class="book-price">{{book.get_price()}}</p>
 				    </div>
-				    <div class="col-xs-3">
 				    {% if person %}
-	                <a class="cart-btn pull-right thumbnail glyphicon glyphicon-shopping-cart {% if book in cart_query %} in-cart {% endif %}">
+				    <div class="col-xs-3 {% if person.key.string_id() == book.get_seller_email() %} hidden {% endif %}">
+	                <a class="cart-btn pull-right thumbnail glyphicon glyphicon-shopping-cart 
+	                {% if book in cart_query %} in-cart {% endif %}
+	               ">
 	                <div class="hidden entity-key">{{ book.key.urlsafe() }}</div>
 	                </a>
-	                {% endif %}
 				    </div>
+	                {% endif %}
 				</div>
 				
 				

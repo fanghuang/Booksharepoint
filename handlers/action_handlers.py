@@ -53,7 +53,7 @@ class InsertBookAction(BaseActionRequestHandler):
             if book_dept:
                 book.dept = book_dept.lower()
             if book_condition_id:
-                book_condition_id.dept = book_condition_id
+                book.condition_id = book_condition_id
 
             # TODO: Replace above with this when all fields are given
 #             book = Book(parent=ROOT_BOOK_KEY, seller_key = book_seller_key, price=book_price, 

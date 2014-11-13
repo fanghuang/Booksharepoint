@@ -164,23 +164,33 @@ rh.book.enableButtons = function() {
 		
 	});
 	
-	$("#send-email").click(function() {
-		var email = $(this).find(".contact-email").html();
-		var imageurl = $(this).find(".image-url").html().replace(/&amp;/g, '&');
-		var isbn = $(this).find(".isbn").html();
-		var title = $(this).find(".title").html();
-		var author = $(this).find(".author").html();
-		var price = $(this).find(".price").html();
-		var condition = $(this).find(".condition").html();
-		var dept = $(this).find(".dept-abbrev").html().toUpperCase();
-		var data = {email_address : email, imageurl : imageurl,
-		 isbn : isbn, title : title, author : author, price : price,
-		 condition : condition, dept : dept};
+	$("#send-email *").click(function() {
+		
+		console.log("Sending email to seller");
+		var btnIndex = $().index(this);
+		var $elem = $(this).closest("#send-email");
+		var email = $elem.find(".contact-email").html();
+		var imageurl = $elem.find(".image-url").html().replace(/&amp;/g, '&');
+//		var isbn = $(this).find(".isbn").html();
+		var title = $elem.find(".title").html();
+//		var author = $(this).find(".author").html();
+		var price = $elem.find(".price").html();
+//		var condition = $(this).find(".condition").html();
+//		var dept = $(this).find(".dept-abbrev").html().toUpperCase();
+		
+		// Start AJAX
+		var data = {
+			email_address : email, 
+			imageurl : imageurl,
+			title : title, 
+			price : price
+		};
 		console.log(data);
 		$.post("/api/v1/email", data).done(function(resp){
-			console.log("success");
+			console.log("send mail done");
+			console.log(resp);
 		}).fail(function(jqxhr, textStatus, error){
-			console.log("PPPP failed withh status: " + textStatus + ", " + error);
+			console.log("POST send mail failed with status: " + textStatus + ", " + error);
 		});
 
 	});
