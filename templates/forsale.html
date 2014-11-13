@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Book Share Point</title>
 {% include "templates/include/bootstrap-css.html" %}
-<link rel="stylesheet" type="text/css" href="/static/css/pinterest.css">
+
 <link rel="stylesheet" type="text/css" href="/static/css/main.css">
 </head>
 <body>
@@ -23,10 +23,10 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					{% block navbar_left %}
+				{% block navbar_left %}
 				    {% if person %}
 					<li>
-					   <a id="add-book" data-toggle="modal" data-target="#insert-book-modal" href="#">Add Books</a>
+					   <a id="add-book" data-toggle="modal" data-target="#insert-book-option-modal" href="#">Sell a Book</a>
 					</li>
 					{% endif %}
 				{% endblock %}
@@ -51,11 +51,18 @@
 
 			{% for book in books_query %}
 			
-			<div class="col-xs-6 col-md-3">
-					<a href="#" class="thumbnail"> <img
-						src="{{book.image_url}}"
-						alt="Book Cover">
+			<div class="col-xs-6 col-md-3" data-toggle="modal" data-target="#edit-book-modal">
+					<a class="thumbnail ownbooks"> 
+						<img src="{{book.image_url}}" alt="Book Cover">
 						<p class="caption">{{book.get_price()}}</p>
+						<div class="hidden entity-key">{{book.key.urlsafe()}}</div>
+						<div class="hidden image-url">{{book.image_url}}</div>
+						<div class="hidden isbn">{{book.isbn}}</div>
+						<div class="hidden title">{{book.title}}</div>
+						<div class="hidden author">{{book.author}}</div>
+						<div class="hidden price">{{book.price}}</div>
+						<div class="hidden condition">{{book.condition_id}}</div>
+						<div class="hidden dept-abbrev">{{book.dept}}</div>
 					</a>
 			</div>
 			{% endfor %}
@@ -68,7 +75,10 @@
 
 	</div>
 
-	{% include "templates/modals/insert-book-modal.html" %}
+
+	{% include "templates/modals/insert-book-option-modal.html" %}
+	{% include "templates/modals/delete-book-modal.html" %}
+	{% include "templates/modals/edit-book-modal.html" %}
 	
     {% include "templates/include/bootstrap_jquery.html" %}
 	<script src="/static/js/holder.js"></script>
