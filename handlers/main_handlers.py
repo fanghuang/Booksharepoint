@@ -7,11 +7,12 @@ class HomePage(BaseRequestHandler):
     template = "templates/index.html"
     
     def get(self):
-        books_query = Book.query(ancestor=ROOT_BOOK_KEY).order(-Book.last_touch_date_time)
-
+        books_query = Book.query(ancestor=ROOT_BOOK_KEY).filter(Book.cart_key == None).order(-Book.last_touch_date_time)
+        cart_query = self.person.get_cart()
         dept_query = Department.query(ancestor=ROOT_DEPT_KEY).order(Department.abbrev)
         book_conditions = Book.get_conditions()
         self.values.update({"books_query": books_query,
+                            "cart_query" : cart_query,
                             "dept_query": dept_query, 
                             "book_conditions": book_conditions})        
         self.render(**self.values)

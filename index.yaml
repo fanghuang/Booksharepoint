@@ -20,6 +20,13 @@ indexes:
 - kind: Book
   ancestor: yes
   properties:
+  - name: cart_key
+  - name: last_touch_date_time
+    direction: desc
+
+- kind: Book
+  ancestor: yes
+  properties:
   - name: dept
   - name: last_touch_date_time
     direction: desc

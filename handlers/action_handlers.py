@@ -7,7 +7,6 @@ import logging
 class InsertBookAction(BaseActionRequestHandler):
     def post(self):
         entity_key_urlsafe = self.request.get("entity_key")
-        logging.info(self.request)
         book = None
         
         book_seller_key = self.person.key        
@@ -18,9 +17,7 @@ class InsertBookAction(BaseActionRequestHandler):
         book_author = self.request.get("author")
         book_title = self.request.get("title")
         book_dept = self.request.get("dept-abbrev")
-        logging.info(book_dept)
-        book_comments = self.request.get("comments")
-        condition_id = int(self.request.get("condition"))
+        book_condition_id = int(self.request.get("condition"))
         
         if entity_key_urlsafe:
             book_key = ndb.Key(urlsafe=entity_key_urlsafe)
@@ -39,8 +36,8 @@ class InsertBookAction(BaseActionRequestHandler):
                 book.title = book_title
             if book_dept:
                 book.dept = book_dept.lower()
-            if condition_id:
-                book.condition_id = condition_id
+            if book_condition_id:
+                book.condition_id = book_condition_id
 
             book.image_url = book_image_url
         else:
@@ -54,8 +51,8 @@ class InsertBookAction(BaseActionRequestHandler):
                 book.title = book_title
             if book_dept:
                 book.dept = book_dept.lower()
-            if condition_id:
-                book.condition_id = condition_id
+            if book_condition_id:
+                book_condition_id.dept = book_condition_id
 
             # TODO: Replace above with this when all fields are given
 #             book = Book(parent=ROOT_BOOK_KEY, seller_key = book_seller_key, price=book_price, 
@@ -84,3 +81,5 @@ class AddToCartAction(BaseActionRequestHandler):
             book.put()
             
         self.redirect(self.request.referer)
+         
+        

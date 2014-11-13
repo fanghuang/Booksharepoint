@@ -78,9 +78,21 @@
 			
 			<div class="pin {{book.dept}} hidden">
 				<img src="{{book.image_url}}" alt="Book Cover">
-				<p class="caption">{{book.title}}</p>
-				<p class="book-price">{{book.get_price()}}</p>
-				<a class="pull-right thumbnail glyphicon glyphicon-shopping-cart"></a>
+				<div class="row">
+				    <div class="content col-xs-10">
+					    <p class="caption">{{book.title}}</p>
+	                    <p class="book-price">{{book.get_price()}}</p>
+				    </div>
+				    <div class="col-xs-2">
+				    {% if person %}
+	                <a class="cart-btn pull-right thumbnail glyphicon glyphicon-shopping-cart {% if book in cart_query %} in-cart {% endif %}">
+	                <div class="hidden entity-key">{{ book.key.urlsafe() }}</div>
+	                </a>
+	                {% endif %}
+				    </div>
+				</div>
+				
+				
 			</div>
 			{% endfor %}
 		</div>
@@ -92,6 +104,5 @@
     {% include "templates/include/bootstrap_jquery.html" %}
     <script src="/static/js/holder.js"></script>
 	<script src="/static/js/main.js"></script>
-	<script src="/static/js/booksharepoint.js"></script>
 </body>
 </html>
