@@ -3,10 +3,16 @@ body {
   background-color: #8B95A0;
 }
 
-.caption {
+.caption, .book-price{
   text-align: center;
 }
 
-a .thumbnail {
-	text-decoration: none;
+.glyphicon.glyphicon-shopping-cart {
+	color: #888;
 }
+
+.glyphicon.glyphicon-shopping-cart.in-cart {
+	color: #eee;
+    background-color: #3399ff;
+}
+
