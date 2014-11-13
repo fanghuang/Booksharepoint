@@ -3,6 +3,7 @@ from google.appengine.ext import ndb
 from base_handlers import BaseActionRequestHandler
 from models import Book, ROOT_BOOK_KEY
 import logging
+import json
 
 class InsertBookAction(BaseActionRequestHandler):
     def post(self):
@@ -73,13 +74,32 @@ class DeleteBookAction(BaseActionRequestHandler):
 class AddToCartAction(BaseActionRequestHandler):
     def post(self):
         entity_key_urlsafe = self.request.get("entity_key")
+        
+        resp = None
+        if entity_key_urlsafe:
+            book_key = ndb.Key(urlsafe=entity_key_urlsafe)
+            book = book_key.get()
+            if book.cart_key:
+                # Already in someone's cart
+                resp = {"status" : "Error", "code" : "InCart", "message" : "This book has already been added to someone else's cart"}
+            else:
+                book.cart_key = self.person.key
+                book.put()
+                resp = {"status" : "Success", "code" : "OK", "message" : "Book added to cart"}
+        else:
+            resp = {"status" : "Error", "code" : "NoKey", "message" : "No key was given to the method"}
+        
+        if resp:
+            self.response.out.write(json.dumps(resp))
+            
+class RemoveFromCartAction(BaseActionRequestHandler):
+    def post(self):
+        entity_key_urlsafe = self.request.get("entity_key")
          
         if entity_key_urlsafe:
             book_key = ndb.Key(urlsafe=entity_key_urlsafe)
             book = book_key.get()
-            book.cart_key = self.person.key
+            book.cart_key = None
             book.put()
-            
-        self.redirect(self.request.referer)
          
         

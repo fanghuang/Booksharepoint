@@ -146,8 +146,46 @@ rh.book.enableButtons = function() {
 	
 	
 	$(".cart-btn").click(function() {
+		// Get the correct button
 		var btnIndex = $(".cart-btn").index(this);
-		$($('.cart-btn').get(btnIndex)).toggleClass('in-cart');
+		var $btn = $($('.cart-btn').get(btnIndex));
+		$btn.toggleClass('in-cart');
+		
+		// Get the key for the current book
+		var book_key = $btn.find(".entity-key").html();
+		
+		// AJAX to add to cart
+		var data = {entity_key : book_key};
+		if ($btn.hasClass("in-cart")) {
+			rh.book.addToCart(data);
+		} else {
+			rh.book.removeFromCart(data);
+		}
+		
+	});
+};
+
+rh.book.addToCart = function(data) {
+	$.post('/addtocart', data).done(function(resp) {
+		// Update the label in the user drop form
+		var $cart_counter = $("#cart-counter");
+		var amt_in_cart = parseInt($cart_counter.html());
+		$cart_counter.html(amt_in_cart + 1);
+	}).fail(function(jqxhr, textStatus, error) {
+		console.log("POST action Add to Cart failed");
+		console.log(textStatus + " ");
+	});
+};
+
+rh.book.removeFromCart = function(data) {
+	$.post('/removefromcart', data).done(function(resp) {
+		// Update the label in the user drop form
+		var $cart_counter = $("#cart-counter");
+		var amt_in_cart = parseInt($cart_counter.html());
+		$cart_counter.html(amt_in_cart - 1);
+	}).fail(function(jqxhr, textStatus, error) {
+		console.log("POST action Remove from Cart failed");
+		console.log(textStatus + " ");
 	});
 };
 

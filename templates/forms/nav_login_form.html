@@ -3,7 +3,7 @@
 	data-toggle="dropdown">{{ person.get_name() }}<span class="caret"></span></a>
 	<ul class="dropdown-menu" role="menu">
 		<li><a href="/cart">My Cart &nbsp;
-			<span class="badge">
+			<span id="cart-counter" class="badge">
 			{% if cart %} {{ cart.count() }} 
 			{% else %} 0 {% endif %}</span>
 		</a></li>
