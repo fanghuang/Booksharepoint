@@ -35,10 +35,13 @@ class Book(ndb.Model):
     
     isbn = ndb.StringProperty() 
     author = ndb.StringProperty()
+    author_lower = ndb.ComputedProperty(lambda self: self.author.lower())
     title = ndb.StringProperty()
+    title_lower = ndb.ComputedProperty(lambda self: self.title.lower())
     image_url = ndb.StringProperty()
     
     dept = ndb.StringProperty()
+    dept_lower = ndb.ComputedProperty(lambda self: self.dept.lower())
     
     comments = ndb.TextProperty()
     

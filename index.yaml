@@ -13,6 +13,13 @@ indexes:
 - kind: Book
   ancestor: yes
   properties:
+  - name: author_lower
+  - name: last_touch_date_time
+    direction: desc
+
+- kind: Book
+  ancestor: yes
+  properties:
   - name: dept
   - name: last_touch_date_time
     direction: desc
@@ -20,6 +27,20 @@ indexes:
 - kind: Book
   ancestor: yes
   properties:
+  - name: isbn
+  - name: last_touch_date_time
+    direction: desc
+
+- kind: Book
+  ancestor: yes
+  properties:
+  - name: last_touch_date_time
+    direction: desc
+
+- kind: Book
+  ancestor: yes
+  properties:
+  - name: title_lower
   - name: last_touch_date_time
     direction: desc
 
