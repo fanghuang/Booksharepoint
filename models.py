@@ -44,6 +44,9 @@ class Book(ndb.Model):
     
     last_touch_date_time = ndb.DateTimeProperty(auto_now=True)
 
+    def get_seller_email(self):
+        return self.seller_key.string_id()
+
     def get_price(self):
         return "${0:.0f}".format(round(self.price,0))
     

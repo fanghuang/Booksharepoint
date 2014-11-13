@@ -33,7 +33,7 @@ rh.book.enableButtons = function() {
 	});
 
 	
-	$(".ownbooks").click(function(){
+	$(".ownbooks").click(function() {
 		var entityKey = $(this).find(".entity-key").html();
 		var imageurl = $(this).find(".image-url").html().replace(/&amp;/g, '&');
 		var isbn = $(this).find(".isbn").html();
@@ -59,6 +59,27 @@ rh.book.enableButtons = function() {
 	$(".delete-book").click(function() {
 		var entityKey = $(this).find(".entity-key").html();
 		$("#delete-book-modal input[name=entity_key]").val(entityKey);
+	});
+
+	$("#send-email").click(function() {
+		var email = $(this).find(".contact-email").html();
+		var imageurl = $(this).find(".image-url").html().replace(/&amp;/g, '&');
+		var isbn = $(this).find(".isbn").html();
+		var title = $(this).find(".title").html();
+		var author = $(this).find(".author").html();
+		var price = $(this).find(".price").html();
+		var condition = $(this).find(".condition").html();
+		var dept = $(this).find(".dept-abbrev").html().toUpperCase();
+		var data = {email_address : email, imageurl : imageurl,
+		 isbn : isbn, title : title, author : author, price : price,
+		 condition : condition, dept : dept};
+		console.log(data);
+		$.post("/api/v1/email", data).done(function(resp){
+			console.log("success");
+		}).fail(function(jqxhr, textStatus, error){
+			console.log("PPPP failed withh status: " + textStatus + ", " + error);
+		});
+
 	});
 };
 

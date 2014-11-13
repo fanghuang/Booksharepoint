@@ -55,7 +55,7 @@ class InsertBookAction(BaseActionRequestHandler):
             if book_dept:
                 book.dept = book_dept.lower()
             if condition_id:
-                condition_id.dept = condition_id
+                book.condition_id = condition_id
 
             # TODO: Replace above with this when all fields are given
 #             book = Book(parent=ROOT_BOOK_KEY, seller_key = book_seller_key, price=book_price, 
@@ -84,5 +84,3 @@ class AddToCartAction(BaseActionRequestHandler):
             book.put()
             
         self.redirect(self.request.referer)
-         
-        

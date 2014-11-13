@@ -1,0 +1,14 @@
+<p>Hello,</p>
+
+<p>
+I am interested in purchasing your book tiltled <strong>{{ title }}</strong> for <strong>${{ price }}</strong>.<br>
+Please contact me at <strong>{{ from_addr }}</strong>.
+</p>
+
+<img src="{{img}}">
+
+<hr>
+<p>
+<em>Powered by Booksharepoint.com</em>
+</p>
+
