@@ -54,6 +54,7 @@ class api_email_handler(webapp2.RequestHandler):
 
         message = mail.EmailMessage()
         message.sender = user.email()
+        message.subject = "[BookSharePoint] Book Request"
         message.to = from_addr
         #message.body =  ('Sorry, The email <strong>{}</strong> is already registered.').format(title)
         template_val = {
