@@ -76,7 +76,7 @@
 		<div id="columns">
 			{% for book in books_query %}
 			
-			<div class="pin {{book.dept}} hidden">
+			<div class="pin {{book.dept}} hidden {% if person %} {% if person.key.string_id() == book.get_seller_email() %} bookowner-hidden {% endif %} {% endif %}">
 				<img src="{{book.image_url}}" alt="Book Cover">
 				<div class="row">
 				    <div class="content col-xs-9">
@@ -84,7 +84,7 @@
 	                    <p class="book-price">{{book.get_price()}}</p>
 				    </div>
 				    {% if person %}
-				    <div class="col-xs-3 {% if person.key.string_id() == book.get_seller_email() %} hidden {% endif %}">
+				    <div class="col-xs-3">
 	                <a class="cart-btn pull-right thumbnail glyphicon glyphicon-shopping-cart 
 	                {% if book in cart_query %} in-cart {% endif %}
 	               ">

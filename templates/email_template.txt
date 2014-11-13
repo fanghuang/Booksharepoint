@@ -9,6 +9,6 @@ Please contact me at <strong>{{ from_addr }}</strong>.
 
 <hr>
 <p>
-<em>Powered by Booksharepoint.com</em>
+<em>Powered by BookSharePoint.com</em>
 </p>
 

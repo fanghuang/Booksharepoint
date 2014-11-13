@@ -47,7 +47,7 @@ rh.book.addEventHandlers = function(){
 		$("input[name=isbn]").focus();
 	});
 	
-	$('input[name="isbn"]').on(
+	$('#insert-book-auto-modal input[name="isbn"]').on(
 			'input',
 			function() {
 				var isbn = $(this).val();
@@ -61,10 +61,10 @@ rh.book.addEventHandlers = function(){
 
 							var book_info = book.volumeInfo;
 							var book_title = book_info.title;
-							$('#auto-title').val(book_title);
+							$('#insert-book-auto-modal #auto-title').val(book_title);
 
 							var book_authors = book_info.authors;
-							$('#auto-author').val(
+							$('#insert-book-auto-modal #auto-author').val(
 									book_authors.toString().replace(/\s*,\s*/g,
 											', '));
 
@@ -73,8 +73,8 @@ rh.book.addEventHandlers = function(){
 							book_thumbnail = book_thumbnail.replace(
 									/&edge=curl/g, '');
 
-							$('#auto-img').attr('src', book_thumbnail);
-							$('#auto-img-src').val(book_thumbnail);
+							$('#insert-book-auto-modal #auto-img').attr('src', book_thumbnail);
+							$('#insert-book-auto-modal #auto-img-src').val(book_thumbnail);
 							// var book_obj = {title: book_title, author:
 							// book_authors, img_url: book_thumbnail};
 
@@ -84,35 +84,51 @@ rh.book.addEventHandlers = function(){
 						console.log("failure");
 					});
 				} else {
-					$('#auto-img').attr('src', '');
-					$('#auto-img-src').val('');
-					$('#auto-title').val('');
-					$('#auto-author').val('');
+					$('#insert-book-auto-modal #auto-img').attr('src', '');
+					$('#insert-book-auto-modal #auto-img-src').val('');
+					$('#insert-book-auto-modal #auto-title').val('');
+					$('#insert-book-auto-modal #auto-author').val('');
 				}
 			});
 };
 
 rh.book.enableButtons = function() {	
-	$("#toggle-edit").click(function() {
-		if (rh.book.editing) {
-			rh.book.editing = false;
-			$(".edit-actions").addClass("hidden");
-			$(this).html("Edit");
-		} else {
-			rh.book.editing = true;
-			$(".edit-actions").removeClass("hidden");
-			$(this).html("Done");
-		}
-
-	});
+//	$("#toggle-edit").click(function() {
+//		if (rh.book.editing) {
+//			rh.book.editing = false;
+//			$(".edit-actions").addClass("hidden");
+//			$(this).html("Edit");
+//		} else {
+//			rh.book.editing = true;
+//			$(".edit-actions").removeClass("hidden");
+//			$(this).html("Done");
+//		}
+//
+//	});
 
 	$("#add-book").click(function() {
-		$("#insert-book-modal .modal-title").html("Add a Book");
-		$("#insert-book-modal button[type=submit]").html("Add Book");
+//		$("#insert-book-modal .modal-title").html("Add a Book");
+//		$("#insert-book-modal button[type=submit]").html("Add Book");
 		
-		$("#insert-book-modal input[name=image-url]").val("");
-		$("#insert-book-modal input[name=price]").val("");
 		$("#insert-book-modal input[name=entity_key]").val("").prop("disabled", true);
+		$("#insert-book-modal input[name=image-url]").val("");
+		$("#insert-book-modal input[name=title]").val("");
+		$("#insert-book-modal input[name=author]").val("");
+		$("#insert-book-modal input[name=price]").val("");
+		$("#insert-book-modal select[name=condition]").val("0");
+		$("#insert-book-modal select[name=dept-abbrev]").val("0");
+		
+		$("#insert-book-auto-modal input[name=entity_key]").val("").prop("disabled", true);
+		$("#insert-book-auto-modal #auto-img").attr('src', '');
+		$("#insert-book-auto-modal input[name=image-url]").val("");
+		$("#insert-book-auto-modal input[name=isbn]").val("");
+		$("#insert-book-auto-modal input[name=title]").val("");
+		$("#insert-book-auto-modal input[name=author]").val("");
+		$("#insert-book-auto-modal input[name=price]").val("");
+		$("#insert-book-auto-modal select[name=condition]").val("0");
+		$("#insert-book-auto-modal select[name=dept-abbrev]").val("0");
+		
+		
 	});
 
 	
@@ -167,7 +183,6 @@ rh.book.enableButtons = function() {
 	$("#send-email *").click(function() {
 		
 		console.log("Sending email to seller");
-		var btnIndex = $().index(this);
 		var $elem = $(this).closest("#send-email");
 		var email = $elem.find(".contact-email").html();
 		var imageurl = $elem.find(".image-url").html().replace(/&amp;/g, '&');
