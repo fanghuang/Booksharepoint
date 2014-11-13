@@ -41,17 +41,15 @@ class Book(ndb.Model):
     image_url = ndb.StringProperty()
     
     dept = ndb.StringProperty()
-    dept_lower = ndb.ComputedProperty(lambda self: self.dept.lower())
-    
-    comments = ndb.TextProperty()
     
     last_touch_date_time = ndb.DateTimeProperty(auto_now=True)
 
     def get_price(self):
         return "${0:.0f}".format(round(self.price,0))
     
-    def get_condition_string(self, cond_id):
+    def get_condition_string(self):
         conds = Book.get_conditions()
+        cond_id = self.condition_id
         if cond_id >= 0 and cond_id < len(conds):
             return conds[len(conds) - (1 + cond_id)]
         else:
