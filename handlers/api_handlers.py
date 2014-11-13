@@ -44,21 +44,21 @@ class api_email_handler(webapp2.RequestHandler):
           login_url = users.create_login_url(self.request.path)
           self.redirect(login_url)
           return
-        from_addr = self.request.get("email_address")
+        to_addr = self.request.get("email_address")
         title = self.request.get("title")
         img = self.request.get("imageurl")
         price = self.request.get("price")
-        if not mail.is_email_valid(from_addr):
+        if not mail.is_email_valid(to_addr):
             # Return an error message...
             pass
 
         message = mail.EmailMessage()
         message.sender = user.email()
         message.subject = "[BookSharePoint] Book Request"
-        message.to = from_addr
+        message.to = to_addr
         #message.body =  ('Sorry, The email <strong>{}</strong> is already registered.').format(title)
         template_val = {
-            "from_addr" : from_addr,
+            "from_addr" : user.email(),
             "title" : title,
             "img" : img,
             "price" : price
