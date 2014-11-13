@@ -57,7 +57,7 @@ rh.book.enableButtons = function() {
 
 		$("#edit-book-modal .btn.delete-book .entity-key").html(entityKey);
 		$("#edit-book-modal .entity-key").val(entityKey);
-		$("#edit-book-modal #auto-img").attr('src', ''+imageurl);
+		$("#edit-book-modal #auto-img").attr("src", imageurl);
 		$("#edit-book-modal input[name=image-url]").val(imageurl);
 		$("#edit-book-modal input[name=isbn]").val(isbn);
 		$("#edit-book-modal input[name=title]").val(title);
