@@ -40,47 +40,33 @@
 
 		<div class="jumbotron">
 			<h1>My Cart</h1>
-			<div class="row">
-			<!-- TODO: Jinja this -->
+			<h3>Total: {{total_cost}}</h3>
+			<br>
+			<div id="columns">
+			{% for book in books_query %}
+				<div class="pin">
+		              <a class="thumbnail"> 
+		                <img src="{{book.image_url}}" alt="Book Cover">
+		              </a>
+		              <a class="thumbnail center" id="send-email">
+		              <span class="glyphicon glyphicon-envelope"></span>
+		              &nbsp;<span style="color: #000;">Contact seller</span>
+
+		               <div class="contact-email hidden">{{ book.get_seller_email() }}</div>
+		               <div class="hidden image-url">{{ book.image_url }}</div>
+		               <!-- <div class="hidden isbn">{{ book.isbn }}</div>  -->
+		               <div class="hidden title">{{ book.title }}</div>
+		               <!-- <div class="hidden author">{{ book.author }}</div>  -->
+		               <div class="hidden price">{{ book.price }}</div>
+		               <!--  <div class="hidden condition">{{ book.get_condition_string() }}</div> -->
+		               <!-- <div class="hidden dept-abbrev">{{ book.dept}}</div>  -->
+		           </a>
+	           </div>
+			{% endfor %}
 			
-			<a class="thumbnail glyphicon glyphicon-envelope" id="send-email">
-				<div class="contact-email hidden">billgeorge1@gmail.com</div>
-				<div class="hidden image-url">http://bks5.books.google.com/books?id=drbI_aro20oC&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;source=gbs_api</div>
-				<div class="hidden isbn">20121221</div>
-				<div class="hidden title">jordan oooo</div>
-				<div class="hidden author">moore</div>
-				<div class="hidden price">1</div>
-				<div class="hidden condition">new</div>
-				<div class="hidden dept-abbrev">csse</div>
-			</a>
-				<div class="col-xs-6 col-md-3">
-					<a href="#" class="thumbnail"> <img
-						data-src="holder.js/100%x180/text:Book 1"
-						alt="Generic placeholder thumbnail">
-					</a>
-				</div>
-				<div class="col-xs-6 col-md-3">
-					<a href="#" class="thumbnail"> <img
-						data-src="holder.js/100%x180/text:Book 2"
-						alt="Generic placeholder thumbnail">
-					</a>
-				</div>
-				<div class="col-xs-6 col-md-3">
-					<a href="#" class="thumbnail"> <img
-						data-src="holder.js/100%x180/text:Book 3"
-						alt="Generic placeholder thumbnail">
-					</a>
-				</div>
-				<div class="col-xs-6 col-md-3">
-					<a href="#" class="thumbnail"> <img
-						data-src="holder.js/100%x180/text:Book 4"
-						alt="Generic placeholder thumbnail">
-					</a>
-				</div>
+				
 			</div>
             
-            <p>{{total_cost}}</p>
-			<a class="btn btn-primary btn-lg pull-right" href="#" role="button">Checkout</a>
 			
 		</div>
 

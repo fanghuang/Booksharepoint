@@ -192,6 +192,7 @@ rh.book.addToCart = function(data) {
 		var $cart_counter = $("#cart-counter");
 		var amt_in_cart = parseInt($cart_counter.html());
 		$cart_counter.html(amt_in_cart + 1);
+		console.log("Book added successfully");
 	}).fail(function(jqxhr, textStatus, error) {
 		console.log("POST action Add to Cart failed");
 		console.log(textStatus + " ");
@@ -204,6 +205,7 @@ rh.book.removeFromCart = function(data) {
 		var $cart_counter = $("#cart-counter");
 		var amt_in_cart = parseInt($cart_counter.html());
 		$cart_counter.html(amt_in_cart - 1);
+		console.log("Book removed successfully");
 	}).fail(function(jqxhr, textStatus, error) {
 		console.log("POST action Remove from Cart failed");
 		console.log(textStatus + " ");
