@@ -54,7 +54,7 @@
   padding-bottom: 5px;
   background: -webkit-linear-gradient(45deg, #FFF, #F9F9F9);
   opacity: 1;
-
+  max-width: 180px;
   -webkit-transition: all .2s ease;
   -moz-transition: all .2s ease;
   -o-transition: all .2s ease;
