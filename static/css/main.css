@@ -4,6 +4,10 @@ body {
 }
 
 .book-price {
+  text-align: left;
+}
+
+.book-title {
   text-align: center;
 }
 

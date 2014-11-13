@@ -78,9 +78,9 @@
 			
 			<div class="pin">
 				<img src="{{book.image_url}}" alt="Book Cover">
-				<p class="book-price">{{book.title}}</p>
-				<p class="book-price">{{book.get_price()}}</p>
-				<a class="pull-right thumbnail glyphicon glyphicon-shopping-cart"></a>
+				<p class="book-title">{{book.title}}</p>
+				<p class="book-price">{{book.get_price()}}<a class="pull-right thumbnail glyphicon glyphicon-shopping-cart"></a></p>
+				
 			</div>
 			{% endfor %}
 		</div>
