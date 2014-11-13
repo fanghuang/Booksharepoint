@@ -7,7 +7,6 @@ import logging
 class InsertBookAction(BaseActionRequestHandler):
     def post(self):
         entity_key_urlsafe = self.request.get("entity_key")
-        logging.info(self.request)
         book = None
         
         book_seller_key = self.person.key        
@@ -18,8 +17,6 @@ class InsertBookAction(BaseActionRequestHandler):
         book_author = self.request.get("author")
         book_title = self.request.get("title")
         book_dept = self.request.get("dept-abbrev")
-        logging.info(book_dept)
-        book_comments = self.request.get("comments")
         
         if entity_key_urlsafe:
             book_key = ndb.Key(urlsafe=entity_key_urlsafe)
